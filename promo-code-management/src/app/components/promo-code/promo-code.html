@@ -1,0 +1,27 @@
+<div>
+  <h2>Promo Codes</h2>
+  <table>
+    <tr>
+      <th>Code</th>
+      <th>Amount</th>
+      <th>Discount Type</th>
+      <th>Expiry Date</th>
+    </tr>
+    <tr *ngFor="let promo of promoCodes">
+      <td>{{ promo.code }}</td>
+      <td>{{ promo.amount }}</td>
+      <td>{{ promo.discountType }}</td>
+      <td>{{ promo.expiryDate }}</td>
+    </tr>
+  </table>
+
+  <h3>Create New Promo Code</h3>
+  <form #form="ngForm" (ngSubmit)="createPromoCode()">
+    <input type="text" [(ngModel)]="newPromoCode.code" placeholder="Promo Code" name="code" required />
+    <input type="number" [(ngModel)]="newPromoCode.amount" placeholder="Amount" name="amount" required />
+    <input type="text" [(ngModel)]="newPromoCode.discountType" placeholder="Discount Type" name="discountType" required />
+    <input type="date" [(ngModel)]="newPromoCode.expiryDate" placeholder="Expiry Date" name="expiryDate" required />
+    <button type="submit" [disabled]="form.invalid">Add Promo Code</button>
+  </form>
+</div>
+

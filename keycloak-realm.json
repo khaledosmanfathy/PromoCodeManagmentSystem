@@ -1,0 +1,33 @@
+{
+  "realm": "promo-realm",
+  "clients": [{
+    "clientId": "promo-management",
+    "secret": "dev-secret",
+    "redirectUris": ["http://localhost:8082/*"],
+    "webOrigins": ["+"],
+    "publicClient": false,
+    "protocol": "openid-connect"
+  }],
+  "users": [{
+    "username": "admin",
+    "credentials": [{
+      "type": "password",
+      "value": "admin"
+    }],
+    "realmRoles": ["ADMIN"]
+  }, {
+    "username": "business",
+    "credentials": [{
+      "type": "password",
+      "value": "business"
+    }],
+    "realmRoles": ["BUSINESS"]
+  }],
+  "roles": {
+    "realm": [{
+      "name": "ADMIN"
+    }, {
+      "name": "BUSINESS"
+    }]
+  }
+}
