@@ -7,7 +7,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "promo_codes")
@@ -37,7 +36,7 @@ public class PromoCode {
 
     @NotNull(message = "Expiry date is required")
     @Future(message = "Expiry date must be in the future")
-    private Date expiryDate;
+    private LocalDateTime expiryDate;
 
     @PositiveOrZero(message = "Usage limit must be positive or zero")
     private Integer usageLimit;
@@ -57,7 +56,7 @@ public class PromoCode {
     private LocalDateTime updatedAt;
 
     public boolean isExpired() {
-        return new Date().after(expiryDate) || status == PromoCodeStatus.EXPIRED;
+        return LocalDateTime.now().isAfter(expiryDate) || status == PromoCodeStatus.EXPIRED;
     }
 
     public boolean canBeUsed() {
