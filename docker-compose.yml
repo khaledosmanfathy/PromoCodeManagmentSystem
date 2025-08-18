@@ -28,6 +28,7 @@ services:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
       KC_HOSTNAME: localhost
+      KC_IMPORT_FILES_STRATEGY: OVERWRITE_EXISTING
     ports:
       - "8081:8080"
     depends_on:
@@ -35,7 +36,7 @@ services:
         condition: service_healthy
     volumes:
       - ./keycloak-realm.json:/opt/keycloak/data/import/realm.json
-    command: ["start-dev", "--import-realm"]
+    command: ["start-dev", "--import-realm", "--log-level=DEBUG"]
 
   backend:
     build:
@@ -44,6 +45,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/promo_system
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
+      DEFAULT_TENANT: tenant1
       # Add other backend env vars as needed
     ports:
       - "8082:8082"
@@ -53,7 +55,7 @@ services:
 
   frontend:
     build:
-      context: ./promo-code-management
+      context: ./promo-code-management-ui
     ports:
       - "4200:80"
     depends_on:

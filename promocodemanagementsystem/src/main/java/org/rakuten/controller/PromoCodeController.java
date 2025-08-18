@@ -76,6 +76,12 @@ public class PromoCodeController {
         return ResponseEntity.ok(promoCodeService.searchPromoCodes(code, status, startDate, endDate));
     }
 
+    @GetMapping("/by-code/{code}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'BUSINESS')")
+    public ResponseEntity<PromoCode> getPromoCodeByCode(@PathVariable String code) {
+        return ResponseEntity.ok(promoCodeService.getPromoCodeByCode(code));
+    }
+
     @PostMapping("/apply/{code}")
     public ResponseEntity<PromoCode> applyPromoCode(@PathVariable String code) {
         return ResponseEntity.ok(promoCodeService.applyPromoCode(code));

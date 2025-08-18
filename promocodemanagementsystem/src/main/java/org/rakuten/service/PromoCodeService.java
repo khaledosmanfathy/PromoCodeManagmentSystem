@@ -91,6 +91,12 @@ public class PromoCodeService {
         return promoCodeRepository.findAll(spec);
     }
 
+    @Cacheable(value = "promo-codes", key = "#code")
+    public PromoCode getPromoCodeByCode(String code) {
+        return promoCodeRepository.findByCode(code)
+                .orElseThrow(() -> new IllegalArgumentException("Promo code not found"));
+    }
+
     @Transactional
     public PromoCode applyPromoCode(String code) {
         PromoCode promoCode = promoCodeRepository.findByCode(code)

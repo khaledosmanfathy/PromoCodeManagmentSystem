@@ -2,10 +2,10 @@
   "realm": "promo-realm",
   "clients": [{
     "clientId": "promo-management",
-    "secret": "dev-secret",
-    "redirectUris": ["http://localhost:8082/*"],
+    
+    "redirectUris": ["http://localhost:8082/*", "http://localhost:4200/*"],
     "webOrigins": ["+"],
-    "publicClient": false,
+    "publicClient": true,
     "protocol": "openid-connect"
   }],
   "users": [{

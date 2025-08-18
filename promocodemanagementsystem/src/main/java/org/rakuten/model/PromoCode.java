@@ -32,15 +32,19 @@ public class PromoCode {
 
     @NotNull(message = "Discount type is required")
     @Enumerated(EnumType.STRING)
+    @Column(name = "discount_type")
     private DiscountType discountType;
 
     @NotNull(message = "Expiry date is required")
     @Future(message = "Expiry date must be in the future")
+    @Column(name = "expiry_date")
     private LocalDateTime expiryDate;
 
     @PositiveOrZero(message = "Usage limit must be positive or zero")
+    @Column(name = "usage_limit")
     private Integer usageLimit;
 
+    @Column(name = "usage_count")
     @Builder.Default
     private Integer usageCount = 0;
 
@@ -50,9 +54,11 @@ public class PromoCode {
     private PromoCodeStatus status = PromoCodeStatus.ACTIVE;
 
     @CreationTimestamp
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     public boolean isExpired() {

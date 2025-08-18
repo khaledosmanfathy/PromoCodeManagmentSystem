@@ -18,18 +18,18 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        default_schema: ${DEFAULT_TENANT:tenant1} # Use environment variable DEFAULT_TENANT to set the default tenant
+        default_schema: ${DEFAULT_TENANT} # Use environment variable DEFAULT_TENANT to set the default tenant
         dialect: org.hibernate.dialect.PostgreSQLDialect
   security:
     oauth2:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8081/realms/promo-realm
-          jwk-set-uri: http://localhost:8081/realms/promo-realm/protocol/openid-connect/certs
+          jwk-set-uri: http://keycloak:8080/realms/promo-realm/protocol/openid-connect/certs
 
 keycloak:
   client-id: promo-management
-  client-secret: ${KEYCLOAK_CLIENT_SECRET:22vaGhIOdJDSELk3Ii9QrzlrqgMSLeV1} # Use environment variable KEYCLOAK_CLIENT_SECRET to set the secret
+  client-secret: ${KEYCLOAK_CLIENT_SECRET} # Use environment variable KEYCLOAK_CLIENT_SECRET to set the secret
 
 logging:
   level:
