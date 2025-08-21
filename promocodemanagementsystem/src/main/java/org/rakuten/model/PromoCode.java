@@ -62,7 +62,7 @@ public class PromoCode {
     private LocalDateTime updatedAt;
 
     public boolean isExpired() {
-        return LocalDateTime.now().isAfter(expiryDate) || status == PromoCodeStatus.EXPIRED;
+        return (expiryDate != null && LocalDateTime.now().isAfter(expiryDate)) || status == PromoCodeStatus.EXPIRED;
     }
 
     public boolean canBeUsed() {
